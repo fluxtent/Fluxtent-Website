@@ -1,9 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-
 import { SectionIntro } from "@/components/SectionIntro";
-import { GlassPanel } from "@/components/ui/GlassPanel";
 import type { ContentBlock } from "@/lib/types";
 
 interface AboutProps {
@@ -21,109 +19,75 @@ export function About({ pillars }: AboutProps) {
 
   return (
     <section className="section-spacing relative z-10" id="about">
-            <div className="pointer-events-none absolute inset-x-0 -top-16 h-32 bg-gradient-to-b from-transparent via-[rgba(226,231,255,0.3)] to-transparent" />
-
       <div className="section-shell">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.25 }}
           whileInView={{ opacity: 1, y: 0 }}
         >
           <SectionIntro
-            description="Fluxtent serves as both a professional digital identity and the parent foundation for a family of carefully framed health-related apps. The role of the brand is not just to collect projects, but to give them a coherent philosophy, tone, and sense of purpose."
+            description="Fluxtent serves as both a professional digital identity and the parent foundation for a family of carefully framed health-related apps."
             eyebrow="Foundation"
             title="A calmer, more intentional way to present health-focused digital products."
           />
         </motion.div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-                    <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-            transition={{
-              duration: 0.9,
-              ease: [0.22, 1, 0.36, 1],
-              delay: reduceMotion ? 0 : 0.1,
-            }}
+        <div className="mt-12 grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: reduceMotion ? 0 : 0.1 }}
             viewport={{ once: true, amount: 0.3 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
-            <GlassPanel className="relative h-full overflow-hidden p-7 sm:p-8">
-                            <div className="absolute right-4 top-4 opacity-[0.07]">
-                <svg
-                  width="160"
-                  height="160"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path d={iconPaths[0]} />
-                </svg>
-              </div>
-
-              <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.7)]">
+            <div className="h-full rounded-3xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-7 backdrop-blur-sm sm:p-8">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[rgba(72,88,152,0.6)]">
+                <div className="h-1.5 w-1.5 rounded-full bg-[#7D88F2]" />
                 Why Fluxtent exists
-              </p>
-              <h3 className="font-display balance mt-5 text-3xl leading-[1.02] font-semibold tracking-[-0.04em] text-[color:var(--color-foreground)] sm:text-4xl">
-                The foundation brings identity, continuity, and credibility to a
-                growing health-tech portfolio.
+              </div>
+              <h3 className="font-display balance mt-5 text-[1.75rem] font-semibold leading-[1.05] tracking-[-0.03em] text-[color:var(--color-foreground)] sm:text-3xl">
+                The foundation brings identity, continuity, and credibility to a growing health-tech portfolio.
               </h3>
-              <p className="pretty mt-6 max-w-2xl text-base leading-7 text-[color:var(--color-muted)]">
-                Rather than presenting each app as a disconnected artifact,
-                Fluxtent makes the broader intention visible: thoughtful tools for
-                healthier decisions, better routines, and more accessible everyday
-                support.
+              <p className="pretty mt-5 max-w-xl text-[15px] leading-7 text-[color:var(--color-muted)]">
+                Rather than presenting each app as a disconnected artifact, Fluxtent makes the broader intention visible: thoughtful tools for healthier decisions and better routines.
               </p>
 
-                            <div className="mt-8 flex items-center gap-6 rounded-2xl border border-white/60 bg-white/50 px-5 py-4">
-                <div>
-                  <p className="text-2xl font-semibold tracking-tight text-[color:var(--color-foreground)]">
-                    4
-                  </p>
-                  <p className="text-xs text-[color:var(--color-muted)]">
-                    Health-focused products
-                  </p>
-                </div>
-                <div className="h-8 w-px bg-[rgba(146,160,208,0.22)]" />
-                <div>
-                  <p className="text-2xl font-semibold tracking-tight text-[color:var(--color-foreground)]">
-                    1
-                  </p>
-                  <p className="text-xs text-[color:var(--color-muted)]">
-                    Unified brand ecosystem
-                  </p>
-                </div>
-                <div className="h-8 w-px bg-[rgba(146,160,208,0.22)]" />
-                <div>
-                  <p className="text-2xl font-semibold tracking-tight text-[color:var(--color-foreground)]">
-                    ∞
-                  </p>
-                  <p className="text-xs text-[color:var(--color-muted)]">
-                    Commitment to care
-                  </p>
-                </div>
+              <div className="mt-7 flex items-center gap-5 rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/60 px-5 py-3.5">
+                {[
+                  { val: "5", sub: "Health-focused products" },
+                  { val: "1", sub: "Unified brand ecosystem" },
+                  { val: "∞", sub: "Commitment to care" },
+                ].map((stat, i) => (
+                  <div key={stat.sub} className="flex items-center gap-5">
+                    {i > 0 && <div className="h-7 w-px bg-[rgba(146,160,208,0.18)]" />}
+                    <div>
+                      <p className="text-xl font-semibold tracking-tight text-[color:var(--color-foreground)]">{stat.val}</p>
+                      <p className="text-[11px] text-[color:var(--color-muted)]">{stat.sub}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </GlassPanel>
+            </div>
           </motion.div>
 
-                    <div className="grid gap-5">
+          <div className="grid gap-4">
             {pillars.map((pillar, index) => (
               <motion.div
                 key={pillar.title}
-                initial={reduceMotion ? false : { opacity: 0, x: 32 }}
+                initial={reduceMotion ? false : { opacity: 0, x: 28 }}
                 transition={{
-                  duration: 0.85,
+                  duration: 0.75,
                   ease: [0.22, 1, 0.36, 1],
-                  delay: reduceMotion ? 0 : 0.15 + index * 0.1,
+                  delay: reduceMotion ? 0 : 0.12 + index * 0.08,
                 }}
                 viewport={{ once: true, amount: 0.4 }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <GlassPanel className="group p-6 transition-all duration-300 hover:shadow-[0_24px_70px_rgba(107,121,181,0.16)]">
+                <div className="group rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/55 p-5 backdrop-blur-sm transition-all duration-300 hover:bg-white/75 hover:shadow-[0_12px_40px_rgba(107,121,181,0.1)]">
                   <div className="flex items-start gap-4">
-                    <div className="mt-1 flex size-11 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(218,212,255,0.92),rgba(201,229,255,0.85))] shadow-[0_4px_16px_rgba(125,136,242,0.12)] transition-transform duration-300 group-hover:scale-110">
+                    <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(218,212,255,0.85),rgba(201,229,255,0.8))] transition-transform duration-300 group-hover:scale-105">
                       <svg
-                        className="size-5 text-[rgba(44,50,96,0.85)]"
+                        className="size-[18px] text-[rgba(44,50,96,0.8)]"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1.8"
@@ -136,15 +100,15 @@ export function About({ pillars }: AboutProps) {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold tracking-[-0.03em] text-[color:var(--color-foreground)]">
+                      <h3 className="text-[15px] font-semibold tracking-[-0.02em] text-[color:var(--color-foreground)]">
                         {pillar.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
+                      <p className="mt-2 text-[13px] leading-6 text-[color:var(--color-muted)]">
                         {pillar.description}
                       </p>
                     </div>
                   </div>
-                </GlassPanel>
+                </div>
               </motion.div>
             ))}
           </div>

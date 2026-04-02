@@ -1,9 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-
 import { SectionIntro } from "@/components/SectionIntro";
-import { GlassPanel } from "@/components/ui/GlassPanel";
 import type { Principle } from "@/lib/types";
 
 interface VisionProps {
@@ -21,52 +19,46 @@ export function Vision({ principles }: VisionProps) {
 
   return (
     <section className="section-spacing relative z-10" id="vision">
-            <div className="pointer-events-none absolute inset-x-0 -top-16 h-32 bg-gradient-to-b from-transparent via-[rgba(220,226,255,0.28)] to-transparent" />
-
       <div className="section-shell">
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-                    <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, amount: 0.25 }}
             whileInView={{ opacity: 1, y: 0 }}
           >
             <SectionIntro
-              description="Fluxtent is guided by the belief that health-oriented products should be approachable, carefully designed, and genuinely helpful in the rhythms of real life."
+              description="Fluxtent is guided by the belief that health-oriented products should be approachable, carefully designed, and genuinely helpful."
               eyebrow="Vision"
               title="Meaningful utility, shaped by careful design."
             />
 
-            <GlassPanel className="relative mt-8 overflow-hidden p-7 sm:p-8">
-              <div className="shimmer-border absolute inset-x-0 top-0 h-px" />
-              <div className="absolute right-[-2rem] bottom-[-2rem] h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(198,214,255,0.3),transparent)]" />
-              <p className="font-display balance relative text-[clamp(1.8rem,3.5vw,2.8rem)] leading-[0.98] font-semibold tracking-[-0.045em] text-[color:var(--color-foreground)]">
-                Good product thinking reduces friction, respects attention, and
-                helps people make better decisions without spectacle.
+            <div className="mt-7 rounded-2xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-6 backdrop-blur-sm sm:p-7">
+              <p className="font-display balance text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-[color:var(--color-foreground)]">
+                Good product thinking reduces friction, respects attention, and helps
+                people make better decisions without spectacle.
               </p>
-            </GlassPanel>
+            </div>
           </motion.div>
 
-                    <div className="space-y-5">
+          <div className="space-y-4">
             {principles.map((principle, index) => (
               <motion.div
                 key={principle.title}
-                initial={reduceMotion ? false : { opacity: 0, x: 32 }}
+                initial={reduceMotion ? false : { opacity: 0, x: 28 }}
                 transition={{
-                  duration: 0.88,
+                  duration: 0.75,
                   ease: [0.22, 1, 0.36, 1],
-                  delay: reduceMotion ? 0 : 0.1 + index * 0.1,
+                  delay: reduceMotion ? 0 : 0.08 + index * 0.08,
                 }}
                 viewport={{ once: true, amount: 0.35 }}
                 whileInView={{ opacity: 1, x: 0 }}
               >
-                <GlassPanel className="group relative overflow-hidden p-6 transition-all duration-300 hover:shadow-[0_24px_70px_rgba(107,121,181,0.16)] sm:p-7">
-                                    <div className="absolute inset-y-0 left-0 w-[3px] rounded-full bg-[linear-gradient(180deg,rgba(125,136,242,0),rgba(125,136,242,0.5),rgba(157,189,255,0.5),rgba(125,136,242,0))] opacity-50 transition-opacity duration-300 group-hover:opacity-100" />
-
+                <div className="group rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/55 p-5 backdrop-blur-sm transition-all duration-300 hover:bg-white/75 hover:shadow-[0_12px_40px_rgba(107,121,181,0.1)] sm:p-6">
                   <div className="flex items-start gap-4">
-                    <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(218,212,255,0.92),rgba(201,229,255,0.85))] shadow-[0_4px_14px_rgba(125,136,242,0.12)] transition-transform duration-300 group-hover:scale-110">
+                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(218,212,255,0.85),rgba(201,229,255,0.8))] transition-transform duration-300 group-hover:scale-105">
                       <svg
-                        className="size-[18px] text-[rgba(44,50,96,0.85)]"
+                        className="size-4 text-[rgba(44,50,96,0.8)]"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1.8"
@@ -79,18 +71,18 @@ export function Vision({ principles }: VisionProps) {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[rgba(82,96,154,0.65)]">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(82,96,154,0.55)]">
                         Principle 0{index + 1}
                       </p>
-                      <h3 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-[color:var(--color-foreground)]">
+                      <h3 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-[color:var(--color-foreground)]">
                         {principle.title}
                       </h3>
-                      <p className="mt-2.5 text-sm leading-6 text-[color:var(--color-muted)]">
+                      <p className="mt-2 text-[13px] leading-6 text-[color:var(--color-muted)]">
                         {principle.description}
                       </p>
                     </div>
                   </div>
-                </GlassPanel>
+                </div>
               </motion.div>
             ))}
           </div>

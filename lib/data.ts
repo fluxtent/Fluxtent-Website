@@ -9,15 +9,35 @@ import type {
 } from "@/lib/types";
 
 export const navItems: NavItem[] = [
-  { label: "Foundation", href: "#about" },
-  { label: "Founders", href: "#founders" },
-  { label: "Ecosystem", href: "#ecosystem" },
-  { label: "Vision", href: "#vision" },
-  { label: "Contact", href: "#contact" },
+  {
+    label: "Foundation",
+    href: "/foundation",
+    description: "The structure, product framing, and philosophy beneath the Fluxtent portfolio.",
+  },
+  {
+    label: "Founders",
+    href: "/founders",
+    description: "Editorial portraits of Arnav Singh and Varun Puttagunta as the builders behind Fluxtent.",
+  },
+  {
+    label: "Ecosystem",
+    href: "/ecosystem",
+    description: "A connected view of Fluxtent's health-focused apps and linked product experiences.",
+  },
+  {
+    label: "Vision",
+    href: "/vision",
+    description: "The design philosophy guiding Fluxtent's approach to health-oriented digital products.",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    description: "A direct, minimal way to connect with the Fluxtent foundation.",
+  },
 ];
 
 export const heroHighlights: HeroHighlight[] = [
-  { value: "4", label: "health-focused products" },
+  { value: "5", label: "health-focused products and experiences" },
   { value: "2", label: "founders shaping the foundation" },
   { value: "1", label: "clear brand ecosystem" },
 ];
@@ -61,36 +81,71 @@ export const projects: AppProject[] = [
     name: "AllerGuard",
     description:
       "Allergy-aware support for clearer food and health decisions, designed to help users navigate uncertainty with more confidence and less friction.",
+    longDescription:
+      "AllerGuard frames allergy awareness as a calm decision-making experience. The concept is centered on helping users interpret ingredients, reduce uncertainty, and make food-health choices with more confidence in everyday settings.",
     motif: "shield",
     accentClass: "from-[#d7d1ff] via-[#cde6ff] to-white",
     status: "Allergy-aware decision support",
+    href: "/ecosystem#allerguard",
+    linkLabel: "View in ecosystem",
+    focusAreas: ["Food-health clarity", "Safer ingredient awareness", "Lower-friction decision support"],
   },
   {
     slug: "tabguard",
     name: "TabGuard",
     description:
       "A healthier digital habit companion focused on safer, more intentional screen-use patterns and better day-to-day attention management.",
+    longDescription:
+      "TabGuard explores healthier screen routines through gentle intervention rather than guilt-driven restriction. Its place in the Fluxtent ecosystem is to make digital behavior feel more visible, intentional, and easier to rebalance.",
     motif: "focus",
     accentClass: "from-[#d8ecff] via-[#c9d8ff] to-white",
     status: "Focus and screen-use support",
+    href: "/ecosystem#tabguard",
+    linkLabel: "View in ecosystem",
+    focusAreas: ["Digital habit support", "Attention stewardship", "Safer screen-use patterns"],
   },
   {
     slug: "medremind",
     name: "MedRemind",
     description:
       "Medication reminder and adherence support designed to reduce missed steps and make consistency feel simpler, steadier, and more humane.",
+    longDescription:
+      "MedRemind is positioned around consistency and reassurance. Rather than treating adherence as a cold logistics problem, the product concept emphasizes steadiness, reduced friction, and a more humane relationship with routine care.",
     motif: "pulse",
     accentClass: "from-[#efe6ff] via-[#d8e7ff] to-white",
     status: "Medication adherence support",
+    href: "/ecosystem#medremind",
+    linkLabel: "View in ecosystem",
+    focusAreas: ["Medication reminders", "Routine reinforcement", "Calm adherence support"],
   },
   {
     slug: "recall",
     name: "Recall",
     description:
       "Memory support and cognitive assistance for daily reinforcement, helping thoughtful routines stay visible, repeatable, and easier to retain.",
+    longDescription:
+      "Recall focuses on cognitive reinforcement and memory support in a way that feels approachable instead of clinical. Within Fluxtent, it represents a more reflective side of the portfolio: products that strengthen day-to-day recall through clear, repeatable structure.",
     motif: "memory",
     accentClass: "from-[#dae0ff] via-[#d7f0ff] to-white",
     status: "Memory and cognitive support",
+    href: "/ecosystem#recall",
+    linkLabel: "View in ecosystem",
+    focusAreas: ["Cognitive assistance", "Memory reinforcement", "Daily recall structure"],
+  },
+  {
+    slug: "medbrief-ai",
+    name: "MedBrief AI",
+    description:
+      "An intelligent medical companion for healthcare insights, wellness guidance, and thoughtful conversation presented through a polished AI interface.",
+    longDescription:
+      "MedBrief AI extends the portfolio with a live conversational experience. Based on the published site, it is positioned as a premium intelligent assistant for healthcare insights, wellness guidance, and emotionally aware conversation, with features such as saved chats and crisis support pathways.",
+    motif: "brief",
+    accentClass: "from-[#d9d4ff] via-[#cadfff] to-white",
+    status: "Intelligent medical companion",
+    href: "https://medbriefai.vercel.app/",
+    linkLabel: "Visit live product",
+    external: true,
+    focusAreas: ["Healthcare insights", "Wellness guidance", "Thoughtful AI conversation"],
   },
 ];
 
@@ -119,4 +174,3 @@ export const contactLinks: ContactLink[] = [
     helper: "fluxtent@gmail.com",
   },
 ];
-

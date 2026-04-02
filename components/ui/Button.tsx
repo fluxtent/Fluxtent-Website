@@ -1,4 +1,5 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 
@@ -25,16 +26,23 @@ export function Button({
   variant = "primary",
   ...props
 }: ButtonProps) {
+  const classes = cn(
+    "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-[0.01em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(112,127,212,0.6)]",
+    variantClasses[variant],
+    className
+  );
+
+  if (href.startsWith("/")) {
+    return (
+      <Link className={classes} href={href} {...props}>
+        <span>{children}</span>
+        {icon ? <span aria-hidden="true">{icon}</span> : null}
+      </Link>
+    );
+  }
+
   return (
-    <a
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold tracking-[0.01em] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[rgba(112,127,212,0.6)]",
-        variantClasses[variant],
-        className
-      )}
-      href={href}
-      {...props}
-    >
+    <a className={classes} href={href} {...props}>
       <span>{children}</span>
       {icon ? <span aria-hidden="true">{icon}</span> : null}
     </a>

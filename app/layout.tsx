@@ -18,7 +18,10 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Fluxtent — Thoughtful Health Technology",
+  title: {
+    default: "Fluxtent — Thoughtful Health Technology",
+    template: "%s — Fluxtent",
+  },
   description:
     "Fluxtent is a portfolio foundation by Arnav Singh and Varun Puttagunta, focused on building thoughtful, accessible, health-related digital products.",
   icons: {

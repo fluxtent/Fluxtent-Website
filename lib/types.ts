@@ -1,6 +1,7 @@
 export interface NavItem {
   label: string;
   href: string;
+  description: string;
 }
 
 export interface Founder {
@@ -14,9 +15,14 @@ export interface AppProject {
   slug: string;
   name: string;
   description: string;
+  longDescription: string;
   motif: string;
   accentClass: string;
   status: string;
+  href: string;
+  linkLabel: string;
+  external?: boolean;
+  focusAreas: string[];
 }
 
 export interface HeroHighlight {
@@ -39,4 +45,3 @@ export interface ContactLink {
   href: string;
   helper: string;
 }
-
