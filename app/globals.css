@@ -1,6 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
 :root {
+  --color-card: rgba(255, 255, 255, 0.66);
+  --color-card-foreground: #1f2441;
+  --color-muted-foreground: #5b668c;
   --color-background: #f6f7ff;
   --color-foreground: #1f2441;
   --color-muted: #5b668c;
@@ -21,10 +39,12 @@
 }
 
 html {
+  position: relative;
   scroll-behavior: smooth;
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   overflow-x: hidden;
   background:
@@ -200,3 +220,17 @@ section {
     scroll-behavior: auto !important;
   }
 }
+
+.loader {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(125, 136, 242, 0.15);
+  border-top-color: #7D88F2;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+

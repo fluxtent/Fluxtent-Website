@@ -4,13 +4,10 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import Image from "next/image";
 
 import { Button } from "@/components/ui/Button";
-import type { HeroHighlight } from "@/lib/types";
+import { SplineScene } from "@/components/ui/splite";
+import { Spotlight } from "@/components/ui/spotlight";
 
-interface HeroProps {
-  heroHighlights: HeroHighlight[];
-}
-
-export function Hero({ heroHighlights }: HeroProps) {
+export function Hero() {
   const heroLogoImageWidth = 166;
   const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
@@ -50,13 +47,53 @@ export function Hero({ heroHighlights }: HeroProps) {
             background: "radial-gradient(circle, rgba(157,189,255,0.45) 0%, transparent 70%)",
           }}
         />
+        <motion.div
+          className="absolute right-[10%] top-[30%] h-[24rem] w-[24rem] rounded-full opacity-40 blur-[90px]"
+          style={{
+            y: useTransform(scrollYProgress, [0, 0.3], [0, reduceMotion ? 0 : -60]),
+            background: "radial-gradient(circle, rgba(125,136,242,0.3) 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(125,136,242,0.08)" />
+
+      <div
+        className="absolute inset-y-0 -right-[5%] hidden w-[58%] md:block"
+        style={{
+          zIndex: 2,
+          maskImage:
+            "radial-gradient(ellipse 80% 80% at 55% 50%, rgba(0,0,0,0.75) 10%, transparent 65%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 80% 80% at 55% 50%, rgba(0,0,0,0.75) 10%, transparent 65%)",
+        }}
+      >
+        <div
+          className="h-full w-full"
+          style={{
+            filter:
+              "sepia(1) hue-rotate(220deg) saturate(1.8) brightness(1.1) contrast(0.85)",
+            opacity: 0.7,
+          }}
+        >
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="h-full w-full"
+          />
+        </div>
       </div>
 
       <motion.div
-        className="section-shell grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
+        className="section-shell relative z-10"
         style={{ scale: heroScale, opacity: heroOpacity }}
       >
-        <motion.div variants={stagger} initial="hidden" viewport={{ once: true, amount: 0.3 }} whileInView="show">
+        <motion.div
+          className="max-w-[42rem]"
+          variants={stagger}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+          whileInView="show"
+        >
           <motion.div className="flex items-center gap-3" variants={fadeUp}>
             <div className="h-px w-8 bg-gradient-to-r from-[#7D88F2] to-transparent" />
             <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.65)]">
@@ -83,7 +120,7 @@ export function Hero({ heroHighlights }: HeroProps) {
           </motion.div>
 
           <motion.h1
-            className="font-display balance mt-7 max-w-[32rem] text-[clamp(2.6rem,5.5vw,5.2rem)] leading-[0.92] font-semibold tracking-[-0.045em] text-[color:var(--color-foreground)]"
+            className="font-display balance mt-7 max-w-[38rem] text-[clamp(2.6rem,5.5vw,5.2rem)] leading-[0.92] font-semibold tracking-[-0.045em] text-[color:var(--color-foreground)]"
             variants={fadeUp}
           >
             A portfolio foundation for <span className="gradient-text">thoughtful</span> health
@@ -125,86 +162,6 @@ export function Hero({ heroHighlights }: HeroProps) {
               View Foundation
             </Button>
           </motion.div>
-
-          <motion.div className="mt-10 grid gap-3 sm:grid-cols-3" variants={fadeUp}>
-            {heroHighlights.map((highlight, index) => (
-              <motion.div
-                key={highlight.label}
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                transition={{
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: reduceMotion ? 0 : 0.4 + index * 0.08,
-                }}
-                viewport={{ once: true, amount: 0.6 }}
-                whileInView={{ opacity: 1, y: 0 }}
-              >
-                <div className="rounded-2xl border border-[rgba(142,157,211,0.15)] bg-white/60 p-4 backdrop-blur-sm transition-all duration-300 hover:bg-white/80 hover:shadow-[0_12px_40px_rgba(107,121,181,0.12)]">
-                  <div className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--color-foreground)]">
-                    {highlight.value}
-                  </div>
-                  <p className="mt-1.5 text-[13px] leading-5 text-[color:var(--color-muted)]">
-                    {highlight.label}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, x: 30 }}
-          transition={{
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
-            delay: reduceMotion ? 0 : 0.2,
-          }}
-          viewport={{ once: true, amount: 0.3 }}
-          whileInView={{ opacity: 1, x: 0 }}
-        >
-          <div className="rounded-3xl border border-[rgba(142,157,211,0.15)] bg-white/60 p-6 shadow-[0_24px_80px_rgba(116,130,185,0.1)] backdrop-blur-lg sm:p-8">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[rgba(72,88,152,0.6)]">
-              <div className="h-1.5 w-1.5 rounded-full bg-[#7D88F2]" />
-              Brand Architecture
-            </div>
-
-            <div className="mt-6 space-y-4">
-              {[
-                {
-                  label: "Identity",
-                  text: "A credible digital home for founder-led health product thinking.",
-                },
-                {
-                  label: "Ecosystem",
-                  text: "AllerGuard, TabGuard, MedRemind, Recall, and MedBrief AI as one connected body of work.",
-                },
-                {
-                  label: "Principle",
-                  text: "Health technology should feel calm, intelligent, and built with real human care.",
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  className="group rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/70 p-5 transition-all duration-300 hover:bg-white/90 hover:shadow-[0_8px_28px_rgba(120,133,191,0.1)]"
-                  initial={reduceMotion ? false : { opacity: 0, x: 16 }}
-                  transition={{
-                    duration: 0.65,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: reduceMotion ? 0 : 0.4 + i * 0.1,
-                  }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(78,94,150,0.6)]">
-                    {item.label}
-                  </p>
-                  <p className="mt-2 text-[15px] font-semibold leading-snug tracking-[-0.02em] text-[color:var(--color-foreground)]">
-                    {item.text}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </motion.div>
       </motion.div>
 

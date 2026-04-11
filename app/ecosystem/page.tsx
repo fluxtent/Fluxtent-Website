@@ -8,35 +8,39 @@ import { projects } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Ecosystem",
-  description: "Explore the Fluxtent ecosystem, including core projects and the live MedBrief AI experience.",
+  description: "Explore the Fluxtent ecosystem — four live Chrome extensions, one web application, and a unified vision for thoughtful health technology.",
 };
 
 export default function EcosystemPage() {
   return (
     <PageFrame>
       <PageHero
-        description="The Fluxtent ecosystem is designed as a connected family of health-focused product ideas, each with its own role, interface mood, and everyday use case. MedBrief AI now joins that portfolio as a live external experience."
+        description="From AI-powered allergen detection to medication adherence and digital wellness, each Fluxtent product addresses a specific gap in everyday health management. Most are already live and available for installation."
         eyebrow="Ecosystem"
         panelItems={[
           {
-            title: "Original apps",
-            description: "AllerGuard, TabGuard, MedRemind, and Recall represent the internal Fluxtent product family.",
+            title: "Chrome extensions",
+            description: "AllerGuard, TabGuard, and MedRemind are live on the Chrome Web Store, ready for immediate use.",
           },
           {
-            title: "Live experience",
-            description: "MedBrief AI expands the portfolio with a published conversational health-support product.",
+            title: "Web application",
+            description: "MedBrief AI runs as a full-stack conversational health companion at medbriefai.vercel.app.",
           },
           {
-            title: "Shared standard",
-            description: "Every entry is framed through the same lens: calm clarity, meaningful utility, and respectful design.",
+            title: "In progress",
+            description: "Recall is actively under development as a cognitive wellness toolkit with spaced repetition.",
           },
         ]}
         panelTitle="Portfolio composition"
-        title="A connected portfolio of health-oriented products and experiences."
+        title="Five products addressing five distinct health challenges."
       />
-      <AppsShowcase projects={projects} />
+      <AppsShowcase
+        description="Each product operates independently while sharing Fluxtent's core commitment to calm interfaces, meaningful utility, and thoughtful design. Click through to install or explore."
+        eyebrow="Product catalog"
+        projects={projects}
+        title="Browse the full Fluxtent product family."
+      />
       <EcosystemAtlas projects={projects} />
     </PageFrame>
   );
 }
-

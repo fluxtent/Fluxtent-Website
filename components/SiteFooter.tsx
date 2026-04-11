@@ -50,7 +50,7 @@ export function SiteFooter() {
                   {contactLinks[0].helper}
                 </a>
                 <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
-                  Additional socials can layer in later without changing the structure of the site.
+                  Reach out for collaborations or inquiries about the Fluxtent ecosystem.
                 </p>
               </div>
             </div>

@@ -78,8 +78,8 @@ export function EcosystemAtlas({ projects }: EcosystemAtlasProps) {
                   </Button>
                   <p className="text-sm text-[color:var(--color-muted)]">
                     {project.external
-                      ? "Live external experience"
-                      : "Anchored inside the Fluxtent ecosystem page"}
+                      ? "Live — available now"
+                      : "Coming soon to the ecosystem"}
                   </p>
                 </div>
               </div>

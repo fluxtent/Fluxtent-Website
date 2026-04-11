@@ -27,9 +27,9 @@ export function About({ pillars }: AboutProps) {
           whileInView={{ opacity: 1, y: 0 }}
         >
           <SectionIntro
-            description="Fluxtent serves as both a professional digital identity and the parent foundation for a family of carefully framed health-related apps."
+            description="Every decision starts with a question: does this make someone's health journey clearer, calmer, or more manageable?"
             eyebrow="Foundation"
-            title="A calmer, more intentional way to present health-focused digital products."
+            title="Built around philosophy, not just products."
           />
         </motion.div>
 
@@ -43,30 +43,16 @@ export function About({ pillars }: AboutProps) {
             <div className="h-full rounded-3xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-7 backdrop-blur-sm sm:p-8">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[rgba(72,88,152,0.6)]">
                 <div className="h-1.5 w-1.5 rounded-full bg-[#7D88F2]" />
-                Why Fluxtent exists
+                Why this approach matters
               </div>
               <h3 className="font-display balance mt-5 text-[1.75rem] font-semibold leading-[1.05] tracking-[-0.03em] text-[color:var(--color-foreground)] sm:text-3xl">
-                The foundation brings identity, continuity, and credibility to a growing health-tech portfolio.
+                Identity, continuity, and credibility for a growing health-tech portfolio.
               </h3>
               <p className="pretty mt-5 max-w-xl text-[15px] leading-7 text-[color:var(--color-muted)]">
-                Rather than presenting each app as a disconnected artifact, Fluxtent makes the broader intention visible: thoughtful tools for healthier decisions and better routines.
+                Rather than presenting each app as a disconnected artifact, Fluxtent
+                makes the broader intention visible: a coordinated ecosystem of tools
+                designed for healthier decisions and better routines.
               </p>
-
-              <div className="mt-7 flex items-center gap-5 rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/60 px-5 py-3.5">
-                {[
-                  { val: "5", sub: "Health-focused products" },
-                  { val: "1", sub: "Unified brand ecosystem" },
-                  { val: "∞", sub: "Commitment to care" },
-                ].map((stat, i) => (
-                  <div key={stat.sub} className="flex items-center gap-5">
-                    {i > 0 && <div className="h-7 w-px bg-[rgba(146,160,208,0.18)]" />}
-                    <div>
-                      <p className="text-xl font-semibold tracking-tight text-[color:var(--color-foreground)]">{stat.val}</p>
-                      <p className="text-[11px] text-[color:var(--color-muted)]">{stat.sub}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </motion.div>
 
