@@ -1,7 +1,5 @@
 import type { ReactNode } from "react";
 
-import { AnimatedPaths } from "@/components/AnimatedPaths";
-import { ScrollProgress } from "@/components/ScrollProgress";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { navItems } from "@/lib/data";
@@ -12,13 +10,9 @@ interface PageFrameProps {
 
 export function PageFrame({ children }: PageFrameProps) {
   return (
-    <div className="relative overflow-x-clip">
-      <ScrollProgress />
+    <div className="min-h-screen">
       <SiteHeader navItems={navItems} />
-      <main className="relative isolate" id="main-content">
-        <AnimatedPaths />
-        {children}
-      </main>
+      <main id="main-content">{children}</main>
       <SiteFooter />
     </div>
   );

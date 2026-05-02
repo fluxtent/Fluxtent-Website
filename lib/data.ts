@@ -12,66 +12,66 @@ export const navItems: NavItem[] = [
   {
     label: "Foundation",
     href: "/foundation",
-    description: "The structure, product framing, and philosophy beneath the Fluxtent portfolio.",
+    description: "How Fluxtent organizes the product portfolio and shared standards.",
+  },
+  {
+    label: "Products",
+    href: "/ecosystem",
+    description: "The live Chrome extensions, web app, and product in development.",
   },
   {
     label: "Founders",
     href: "/founders",
-    description: "Editorial portraits of Arnav Singh and Varun Puttagunta as the builders behind Fluxtent.",
+    description: "The people responsible for the Fluxtent portfolio.",
   },
   {
-    label: "Ecosystem",
-    href: "/ecosystem",
-    description: "A connected view of Fluxtent's health-focused apps and linked product experiences.",
-  },
-  {
-    label: "Vision",
+    label: "Standards",
     href: "/vision",
-    description: "The design philosophy guiding Fluxtent's approach to health-oriented digital products.",
+    description: "The product and design principles behind Fluxtent.",
   },
   {
     label: "Contact",
     href: "/contact",
-    description: "A direct, minimal way to connect with the Fluxtent foundation.",
+    description: "Reach the Fluxtent team.",
   },
 ];
 
 export const heroHighlights: HeroHighlight[] = [
-  { value: "5", label: "health-focused products and experiences" },
-  { value: "2", label: "founders shaping the foundation" },
-  { value: "1", label: "clear brand ecosystem" },
+  { value: "4", label: "live products" },
+  { value: "3", label: "Chrome extensions" },
+  { value: "5", label: "health and wellness areas" },
 ];
 
 export const foundationPillars: ContentBlock[] = [
   {
-    title: "Thoughtful product framing",
+    title: "One portfolio, not scattered projects",
     description:
-      "Each Fluxtent product begins with a real point of friction in daily health routines, then gets refined into something approachable, calm, and useful.",
+      "Fluxtent gives each product a clear place in a shared health technology ecosystem instead of making every app explain itself from zero.",
   },
   {
-    title: "Accessible, human-centered design",
+    title: "Practical product standards",
     description:
-      "The foundation is built around clarity, legibility, and practical guidance so technology feels supportive rather than overwhelming.",
+      "The foundation prioritizes legible interfaces, direct user value, accessible language, and product pages that make adoption decisions easier.",
   },
   {
-    title: "Connected brand stewardship",
+    title: "Room to expand cleanly",
     description:
-      "Fluxtent acts as both a professional identity and a parent structure, tying individual apps into a cohesive, credible health-tech story.",
+      "New tools, updates, collaborators, and deeper product pages can be added without rebuilding the brand story each time.",
   },
 ];
 
 export const founders: Founder[] = [
   {
     name: "Arnav Singh",
-    role: "Co-founder · Product builder",
-    bio: "Arnav approaches Fluxtent through the lens of crafted digital experiences: turning complex health-related needs into interfaces that feel clear, modern, and dependable. His focus sits at the intersection of design quality, product structure, and practical usefulness.",
-    emphasis: "Designing for clarity without losing ambition.",
+    role: "Co-founder, product and interface",
+    bio: "Arnav focuses on turning health-related product ideas into usable digital experiences with clear structure, readable screens, and credible presentation.",
+    emphasis: "Make the product understandable before making it impressive.",
   },
   {
     name: "Varun Puttagunta",
-    role: "Co-founder · Systems-minded creator",
-    bio: "Varun helps shape Fluxtent as a foundation for tools that feel intentional from concept to interaction. His perspective brings a steady product rigor to the ecosystem, keeping each idea grounded in everyday relevance and meaningful support.",
-    emphasis: "Building health technology that feels approachable and real.",
+    role: "Co-founder, systems and portfolio",
+    bio: "Varun helps keep the portfolio coherent across products, use cases, and roadmap decisions so Fluxtent reads as a connected body of work.",
+    emphasis: "Build the system around real use cases, not around decoration.",
   },
 ];
 
@@ -79,94 +79,134 @@ export const projects: AppProject[] = [
   {
     slug: "allerguard",
     name: "AllerGuard",
+    status: "Live",
+    format: "Chrome extension",
+    audience: "People managing food allergies and sensitivities while shopping or researching products online.",
     description:
-      "AI-powered personalized allergy detection for food products — scans ingredients instantly and alerts you to hidden allergens tailored to your unique sensitivity profile.",
-    longDescription:
-      "AllerGuard brings real-time ingredient intelligence to the browser. Built as a Chrome extension, it uses AI to cross-reference food labels against your personal allergen profile, surfacing risks before they reach your plate. It's the kind of quiet, reliable safety net that makes everyday grocery decisions feel less uncertain.",
-    motif: "shield",
-    accentClass: "from-[#d7d1ff] via-[#cde6ff] to-white",
-    status: "Live on Chrome Web Store",
+      "Personalized allergen detection for food product pages, built to surface ingredient risks before a purchase decision.",
+    problem:
+      "Ingredient labels can be long, inconsistent, and hard to evaluate quickly. Hidden allergen names make online grocery decisions especially risky for people with sensitivities.",
+    solution:
+      "AllerGuard checks product ingredients against a user's allergen profile and flags possible risks directly in the browsing workflow.",
     href: "https://chromewebstore.google.com/detail/allerguard-ai-personalize/bgeahmilohhjaamopmecmbdmbcjcgbff",
-    linkLabel: "Install extension",
+    linkLabel: "Install AllerGuard",
     external: true,
-    focusAreas: ["AI allergen scanning", "Personalized sensitivity profiles", "Real-time ingredient analysis"],
+    focusAreas: ["Allergen safety", "Ingredient scanning", "Personalization"],
+    features: [
+      "Real-time ingredient analysis",
+      "Personal allergen profiles",
+      "Hidden allergen detection",
+      "Browser-native alerts",
+    ],
   },
   {
     slug: "tabguard",
     name: "TabGuard",
+    status: "Live",
+    format: "Chrome extension",
+    audience: "Students, builders, and knowledge workers who want healthier browsing patterns without hard blocking.",
     description:
-      "A browser-native digital wellness companion that helps you reclaim focus by managing tab overload and promoting healthier browsing patterns.",
-    longDescription:
-      "TabGuard addresses one of modern life's quietest productivity drains: tab clutter. Rather than restricting behavior, it gently surfaces awareness about your browsing patterns and provides tools to set boundaries you actually keep. It's digital wellness without the guilt.",
-    motif: "focus",
-    accentClass: "from-[#d8ecff] via-[#c9d8ff] to-white",
-    status: "Live on Chrome Web Store",
+      "A digital wellness extension for reducing tab overload and making browser behavior easier to manage.",
+    problem:
+      "Too many open tabs create constant context switching, visual clutter, and unresolved mental loops throughout the workday.",
+    solution:
+      "TabGuard acts as an awareness layer for tab behavior and helps users set boundaries without punitive blocking.",
     href: "https://chromewebstore.google.com/detail/tabguard/gmdllffjnafefhnppajkeldbgfndjlln",
-    linkLabel: "Install extension",
+    linkLabel: "Install TabGuard",
     external: true,
-    focusAreas: ["Tab management", "Focus preservation", "Browsing habit awareness"],
+    focusAreas: ["Digital wellness", "Focus", "Browsing habits"],
+    features: [
+      "Tab count and age awareness",
+      "Configurable browsing boundaries",
+      "Focus-preserving prompts",
+      "Supportive, non-punitive tone",
+    ],
   },
   {
     slug: "medremind",
     name: "MedRemind",
+    status: "Live",
+    format: "Chrome extension",
+    audience: "People who want medication reminders inside the browser instead of another standalone app.",
     description:
-      "Smart medication tracking that fits into your browser — set persistent reminders, track adherence streaks, and never miss a dose without needing another app.",
-    longDescription:
-      "MedRemind lives where you already spend your time: the browser. It provides gentle, persistent medication reminders with streak tracking and schedule customization, turning a notoriously hard habit into something you can actually maintain. No app download, no account creation — just reliable care.",
-    motif: "pulse",
-    accentClass: "from-[#efe6ff] via-[#d8e7ff] to-white",
-    status: "Live on Chrome Web Store",
+      "Medication reminders and adherence streaks that live where many users already spend their day: the browser.",
+    problem:
+      "Medication adherence often breaks down because reminders are separated from the user's actual daily digital environment.",
+    solution:
+      "MedRemind brings schedule reminders, streak tracking, and simple medication routines into a lightweight browser extension.",
     href: "https://chromewebstore.google.com/detail/medremind/oajgmcmajdcojokefaegpdnnffadhblb",
-    linkLabel: "Install extension",
+    linkLabel: "Install MedRemind",
     external: true,
-    focusAreas: ["Medication scheduling", "Adherence streaks", "Browser-native reminders"],
-  },
-  {
-    slug: "recall",
-    name: "Recall",
-    description:
-      "A cognitive wellness toolkit for daily memory reinforcement — structured exercises and spaced repetition designed to keep your mind sharp and routines visible.",
-    longDescription:
-      "Recall reimagines cognitive fitness as something approachable rather than clinical. Through structured exercises, spaced repetition patterns, and daily reinforcement prompts, it helps users maintain sharper thinking and more reliable recall. It's the reflective, introspective entry in the Fluxtent portfolio.",
-    motif: "memory",
-    accentClass: "from-[#dae0ff] via-[#d7f0ff] to-white",
-    status: "In development",
-    href: "/ecosystem#recall",
-    linkLabel: "View in ecosystem",
-    focusAreas: ["Spaced repetition", "Cognitive exercises", "Daily reinforcement"],
+    focusAreas: ["Medication adherence", "Reminders", "Routine support"],
+    features: [
+      "Browser-native notifications",
+      "Custom medication schedules",
+      "Adherence streak tracking",
+      "Local-first reminder workflow",
+    ],
   },
   {
     slug: "medbrief-ai",
     name: "MedBrief AI",
+    status: "Live",
+    format: "Web application",
+    audience: "Users looking for a conversational way to understand health and wellness questions.",
     description:
-      "A premium AI-powered medical companion delivering conversational healthcare insights, wellness guidance, and emotionally aware support through a polished interface.",
-    longDescription:
-      "MedBrief AI is the flagship live product of the Fluxtent ecosystem. It delivers healthcare knowledge through natural conversation, featuring saved chat history, multi-topic support, and crisis-aware response pathways. It's the most mature expression of Fluxtent's belief that health technology should feel intelligent and genuinely humane.",
-    motif: "brief",
-    accentClass: "from-[#d9d4ff] via-[#cadfff] to-white",
-    status: "Live web application",
+      "A conversational healthcare companion for asking health questions, revisiting prior chats, and receiving context-aware guidance.",
+    problem:
+      "Online health information is abundant but difficult to interpret, often mixing useful guidance with low-quality or alarming content.",
+    solution:
+      "MedBrief AI provides a chat-based interface for health information with saved history, multi-topic support, and crisis-aware response pathways.",
     href: "https://medbriefai.vercel.app/",
     linkLabel: "Launch MedBrief AI",
     external: true,
-    focusAreas: ["Conversational AI", "Healthcare knowledge", "Crisis-aware guidance"],
+    focusAreas: ["Conversational AI", "Health guidance", "Crisis-aware support"],
+    features: [
+      "Natural language health conversations",
+      "Saved chat history",
+      "Multi-topic support",
+      "Crisis-aware response pathways",
+    ],
+  },
+  {
+    slug: "recall",
+    name: "Recall",
+    status: "In development",
+    format: "Cognitive wellness product",
+    audience: "People interested in daily memory reinforcement and cognitive routine support.",
+    description:
+      "A cognitive wellness toolkit using structured exercises and spaced repetition to support memory and recall habits.",
+    problem:
+      "Cognitive wellness tools often feel either overly clinical or overly gamified, leaving little room for a focused daily practice.",
+    solution:
+      "Recall is being designed as a calmer memory-support product grounded in spaced repetition and structured reinforcement.",
+    href: "/ecosystem#recall",
+    linkLabel: "View Recall status",
+    focusAreas: ["Cognitive wellness", "Spaced repetition", "Daily practice"],
+    features: [
+      "Structured memory exercises",
+      "Spaced repetition patterns",
+      "Daily reinforcement prompts",
+      "Development roadmap in progress",
+    ],
   },
 ];
 
 export const principles: Principle[] = [
   {
-    title: "Useful by default",
+    title: "Start with a real user burden",
     description:
-      "Fluxtent favors meaningful function over novelty, with products designed to help people act on information rather than simply admire it.",
+      "Every Fluxtent product should map to a specific source of friction: ingredient risk, tab overload, medication routines, confusing health information, or memory practice.",
   },
   {
-    title: "Calm, clear interfaces",
+    title: "Make the interface readable under pressure",
     description:
-      "Health-related tools carry emotional weight. The design language stays composed, legible, and supportive so the experience feels trustworthy.",
+      "Health-adjacent decisions often happen when people are tired, distracted, or worried. Screens should be direct, calm, and easy to scan.",
   },
   {
-    title: "Care through craft",
+    title: "Earn trust through restraint",
     description:
-      "Details matter: motion, spacing, tone, and interaction all reinforce the sense that these products are made deliberately and with respect for the user.",
+      "The site and products should avoid inflated claims, decorative complexity, and generic startup language. Credibility comes from specificity.",
   },
 ];
 

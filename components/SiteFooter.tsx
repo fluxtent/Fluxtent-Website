@@ -1,68 +1,85 @@
+"use client";
+
 import Link from "next/link";
 
-import { contactLinks, navItems } from "@/lib/data";
+import { contactLinks, navItems, projects } from "@/lib/data";
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 pb-10 pt-2">
-      <div className="section-shell">
-        <div className="rounded-3xl border border-[rgba(142,157,211,0.1)] bg-white/55 px-6 py-6 backdrop-blur-sm sm:px-8">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-xl">
-              <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.68)]">
-                Fluxtent
-              </p>
-              <h2 className="font-display mt-4 text-3xl font-semibold leading-none tracking-[-0.04em] text-[color:var(--color-foreground)] sm:text-[2.6rem]">
-                Thoughtful health technology, presented with clarity.
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-6 text-[color:var(--color-muted)]">
-                Fluxtent is the portfolio foundation created by Arnav Singh and Varun Puttagunta to
-                showcase health-focused products, experiments, and digital systems with intention.
-              </p>
+    <footer style={{ background: "linear-gradient(180deg, #1e1b4b 0%, #0f0d2e 100%)" }}>
+      {/* Gradient divider line */}
+      <div className="h-[2px]" style={{ background: "linear-gradient(90deg, #CEC9FF, #A4C3FF, #7D88F2)" }} />
+
+      <div className="section-shell py-12">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest" style={{ color: "#A4C3FF" }}>
+              Fluxtent
+            </p>
+            <h2 className="mt-3 max-w-xl text-2xl font-semibold leading-tight text-white sm:text-3xl">
+              A focused portfolio for health-related browser and web products.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-6" style={{ color: "rgba(206,201,255,0.6)" }}>
+              Built by Arnav Singh and Varun Puttagunta, Fluxtent gives each product a
+              clear role, direct positioning, and a professional home for future growth.
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold text-white">Navigate</p>
+              <div className="mt-3 grid gap-2.5">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: "rgba(206,201,255,0.55)" }}
+                    href={item.href}
+                    onMouseOver={(e) => { e.currentTarget.style.color = "#A4C3FF"; }}
+                    onMouseOut={(e) => { e.currentTarget.style.color = "rgba(206,201,255,0.55)"; }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(82,96,154,0.58)]">
-                  Explore
-                </p>
-                <div className="mt-3 flex flex-col gap-2">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      className="text-sm text-[color:var(--color-muted)] transition hover:text-[color:var(--color-foreground)]"
-                      href={item.href}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(82,96,154,0.58)]">
-                  Connect
-                </p>
-                <a
-                  className="mt-3 inline-flex text-sm font-medium text-[color:var(--color-foreground)] transition hover:text-[#5E6AD2]"
-                  href={contactLinks[0].href}
-                >
-                  {contactLinks[0].helper}
-                </a>
-                <p className="mt-3 text-sm leading-6 text-[color:var(--color-muted)]">
-                  Reach out for collaborations or inquiries about the Fluxtent ecosystem.
-                </p>
+            <div>
+              <p className="text-sm font-semibold text-white">Products</p>
+              <div className="mt-3 grid gap-2.5">
+                {projects.slice(0, 4).map((project) => (
+                  <Link
+                    key={project.slug}
+                    className="text-sm transition-colors duration-200"
+                    style={{ color: "rgba(206,201,255,0.55)" }}
+                    href={`/ecosystem#${project.slug}`}
+                    onMouseOver={(e) => { e.currentTarget.style.color = "#A4C3FF"; }}
+                    onMouseOut={(e) => { e.currentTarget.style.color = "rgba(206,201,255,0.55)"; }}
+                  >
+                    {project.name}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="mt-8 flex flex-col gap-3 border-t border-[rgba(142,157,211,0.1)] pt-5 text-sm text-[color:var(--color-muted)] sm:flex-row sm:items-center sm:justify-between">
-            <p>&copy; {new Date().getFullYear()} Fluxtent.</p>
-            <p>Built with intention by Arnav Singh and Varun Puttagunta.</p>
-          </div>
+        <div
+          className="mt-10 flex flex-col gap-3 border-t pt-5 text-sm sm:flex-row sm:items-center sm:justify-between"
+          style={{ borderColor: "rgba(206,201,255,0.12)", color: "rgba(206,201,255,0.4)" }}
+        >
+          <p>&copy; {new Date().getFullYear()} Fluxtent.</p>
+          <a
+            className="font-medium transition-colors duration-200"
+            href={contactLinks[0].href}
+            style={{ color: "rgba(206,201,255,0.5)" }}
+            onMouseOver={(e) => { e.currentTarget.style.color = "#A4C3FF"; }}
+            onMouseOut={(e) => { e.currentTarget.style.color = "rgba(206,201,255,0.5)"; }}
+          >
+            {contactLinks[0].helper}
+          </a>
         </div>
       </div>
     </footer>
   );
 }
-

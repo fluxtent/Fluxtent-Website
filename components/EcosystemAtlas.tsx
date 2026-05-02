@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/Button";
 import type { AppProject } from "@/lib/types";
@@ -9,78 +9,105 @@ interface EcosystemAtlasProps {
   projects: AppProject[];
 }
 
+const cardFade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.5, ease: [0.4, 0, 0.2, 1] as const },
+  }),
+};
+
 export function EcosystemAtlas({ projects }: EcosystemAtlasProps) {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <section className="section-spacing relative z-10 pt-4">
+    <section className="section-spacing">
       <div className="section-shell">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.2 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.68)]">
-            Project atlas
-          </p>
-          <h2 className="font-display balance mt-4 text-4xl font-semibold leading-none tracking-[-0.04em] text-[color:var(--color-foreground)] sm:text-5xl">
-            Each product carries a distinct role inside the Fluxtent portfolio.
+        <div className="max-w-3xl">
+          <p className="eyebrow">Product detail</p>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-[var(--color-foreground)] sm:text-4xl">
+            What each product is actually for.
           </h2>
-        </motion.div>
+          <p className="mt-4 text-base leading-7 text-[var(--color-muted)]">
+            The product catalog is organized around user problems, not presentation effects.
+            Each entry states the audience, the burden, the product response, and the current surface.
+          </p>
+        </div>
 
-        <div className="mt-10 space-y-5">
+        <div className="mt-10 grid gap-5">
           {projects.map((project, index) => (
             <motion.article
-              key={project.slug}
-              className="grid gap-5 rounded-[2rem] border border-[rgba(142,157,211,0.12)] bg-white/58 p-6 backdrop-blur-sm lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:p-7"
+              className="professional-card gradient-border-left scroll-mt-24 overflow-hidden p-5 pl-7 sm:p-7 sm:pl-9"
               id={project.slug}
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              transition={{
-                duration: 0.78,
-                ease: [0.22, 1, 0.36, 1],
-                delay: reduceMotion ? 0 : 0.06 + index * 0.06,
-              }}
-              viewport={{ once: true, amount: 0.15 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={project.slug}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              custom={index}
+              variants={cardFade}
             >
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(82,96,154,0.56)]">
-                  {project.status}
-                </p>
-                <h3 className="font-display mt-4 text-3xl font-semibold leading-none tracking-[-0.04em] text-[color:var(--color-foreground)]">
-                  {project.name}
-                </h3>
-                <p className="mt-4 text-sm leading-7 text-[color:var(--color-muted)]">
-                  {project.longDescription}
-                </p>
-              </div>
-
-              <div>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {project.focusAreas.map((focus) => (
-                    <div
-                      key={focus}
-                      className="rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/72 px-4 py-4 text-sm text-[color:var(--color-foreground)]"
+              <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span
+                      className={`status-badge ${project.status === "Live" ? "status-badge-live" : "status-badge-dev"}`}
                     >
-                      {focus}
-                    </div>
-                  ))}
+                      <span className="status-dot" style={{ width: "0.375rem", height: "0.375rem" }} />
+                      {project.status}
+                    </span>
+                    <span className="focus-tag">
+                      {project.format}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 text-3xl font-semibold text-[var(--color-foreground)]">
+                    {project.name}
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-[var(--color-muted)]">
+                    {project.audience}
+                  </p>
+
+                  <div className="mt-6">
+                    <Button
+                      href={project.href}
+                      rel={project.external ? "noreferrer" : undefined}
+                      target={project.external ? "_blank" : undefined}
+                      variant={project.external ? "primary" : "secondary"}
+                    >
+                      {project.linkLabel}
+                    </Button>
+                  </div>
                 </div>
 
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <Button
-                    href={project.href}
-                    rel={project.external ? "noreferrer" : undefined}
-                    target={project.external ? "_blank" : undefined}
-                  >
-                    {project.linkLabel}
-                  </Button>
-                  <p className="text-sm text-[color:var(--color-muted)]">
-                    {project.external
-                      ? "Live — available now"
-                      : "Coming soon to the ecosystem"}
-                  </p>
+                <div className="grid gap-6">
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--color-foreground)]">Problem</p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
+                      {project.problem}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--color-foreground)]">Product response</p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
+                      {project.solution}
+                    </p>
+                  </div>
+
+                  <div className="border-t border-[var(--color-border)] pt-5">
+                    <p className="text-sm font-semibold text-[var(--color-foreground)]">
+                      Key capabilities
+                    </p>
+                    <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                      {project.features.map((feature) => (
+                        <li className="flex gap-2.5 text-sm leading-6 text-[var(--color-muted)]" key={feature}>
+                          <svg className="mt-1 size-4 shrink-0 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </motion.article>

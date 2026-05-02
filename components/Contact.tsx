@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { SectionIntro } from "@/components/SectionIntro";
+import { motion } from "framer-motion";
+
 import { Button } from "@/components/ui/Button";
 import type { ContactLink } from "@/lib/types";
 
@@ -10,91 +10,42 @@ interface ContactProps {
 }
 
 export function Contact({ contactLinks }: ContactProps) {
-  const reduceMotion = useReducedMotion();
   const primaryContact = contactLinks[0];
 
   return (
-    <section className="section-spacing relative z-10 pb-24 sm:pb-32" id="contact">
+    <section className="section-spacing" id="contact">
       <div className="section-shell">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.22 }}
+          className="professional-card grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] as const }}
         >
-          <div className="rounded-3xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-8 backdrop-blur-sm sm:p-10 lg:p-12">
-            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-              <SectionIntro
-                description="Fluxtent is growing deliberately. If you want to connect about the foundation, its products, or future collaboration, the conversation starts here."
-                eyebrow="Contact"
-                title="A minimal close, with room for the foundation to keep expanding."
-              />
+          <div>
+            <p className="eyebrow">Contact</p>
+            <h2 className="mt-3 text-3xl font-semibold leading-tight text-[var(--color-foreground)] sm:text-4xl">
+              Start with a direct email.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-[var(--color-muted)]">
+              Reach out about the Fluxtent portfolio, product questions, collaboration, or future
+              opportunities around the health technology ecosystem.
+            </p>
+          </div>
 
-              <div className="space-y-4">
-                <motion.div
-                  className="group rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/70 p-5 transition-all duration-300 hover:bg-white/90 hover:shadow-[0_12px_40px_rgba(117,131,191,0.1)]"
-                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                  transition={{
-                    duration: 0.75,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: reduceMotion ? 0 : 0.15,
-                  }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[rgba(82,96,154,0.6)]">
-                    Primary contact
-                  </p>
-                  <p className="mt-3 font-display text-2xl font-semibold leading-none tracking-[-0.03em] text-[color:var(--color-foreground)] sm:text-3xl">
-                    {primaryContact.helper}
-                  </p>
-                  <p className="mt-3 text-[13px] leading-6 text-[color:var(--color-muted)]">
-                    Additional social links and contact surfaces will layer in as the
-                    foundation grows.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="flex flex-wrap items-center gap-3"
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  transition={{
-                    duration: 0.75,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: reduceMotion ? 0 : 0.25,
-                  }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                >
-                  <Button
-                    href={primaryContact.href}
-                    icon={
-                      <svg className="size-4" fill="none" viewBox="0 0 16 16">
-                        <path
-                          d="M2.5 4.5L8 8.5L13.5 4.5"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.4"
-                        />
-                        <rect
-                          x="2"
-                          y="3"
-                          width="12"
-                          height="10"
-                          rx="2"
-                          stroke="currentColor"
-                          strokeWidth="1.4"
-                        />
-                      </svg>
-                    }
-                  >
-                    {primaryContact.label}
-                  </Button>
-                  <span className="rounded-full border border-[rgba(142,157,211,0.15)] bg-white/60 px-4 py-2.5 text-[13px] text-[color:var(--color-muted)]">
-                    More contact surfaces coming soon
-                  </span>
-                </motion.div>
-              </div>
+          <div className="border-t border-[var(--color-border)] pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+            <p className="text-sm font-semibold text-[var(--color-foreground)]">Primary channel</p>
+            <a
+              className="mt-2 block break-words text-2xl font-semibold text-[var(--color-accent-dark)] transition-colors duration-200 hover:text-[var(--color-accent)] sm:text-3xl"
+              href={primaryContact.href}
+            >
+              {primaryContact.helper}
+            </a>
+            <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">
+              Email keeps the contact surface simple while the portfolio continues to grow.
+            </p>
+            <div className="mt-5">
+              <Button href={primaryContact.href}>{primaryContact.label}</Button>
             </div>
           </div>
         </motion.div>

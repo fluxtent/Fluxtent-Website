@@ -8,44 +8,44 @@ import { foundationPillars, projects } from "@/lib/data";
 export default function Home() {
   return (
     <PageFrame>
-      <div className="relative overflow-x-clip">
-        <Hero />
-        <About pillars={foundationPillars} />
-        <AppsShowcase
-          description="Four live products and one in development — each addressing a distinct health challenge through Chrome extensions and web applications."
-          eyebrow="Ecosystem"
-          id="home-ecosystem"
-          projects={projects}
-          title="Real products, real impact."
-        />
+      <Hero />
+      <About pillars={foundationPillars} />
+      <AppsShowcase
+        description="Four products are live now, and one is in development. The portfolio spans allergen safety, tab overload, medication adherence, conversational health guidance, and memory reinforcement."
+        eyebrow="Product portfolio"
+        id="home-ecosystem"
+        projects={projects}
+        title="A clear product family, not a generic showcase."
+      />
 
-        <section className="section-spacing relative z-10 pt-4">
-          <div className="section-shell">
-            <div className="rounded-[2rem] border border-[rgba(142,157,211,0.12)] bg-white/58 p-8 backdrop-blur-sm sm:p-10 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-              <div>
-                <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.68)]">
-                  Explore further
-                </p>
-                <h2 className="font-display balance mt-4 text-4xl font-semibold leading-none tracking-[-0.04em] text-[color:var(--color-foreground)] sm:text-5xl">
-                  Every layer of the foundation, one page at a time.
-                </h2>
-              </div>
-              <div className="mt-8 lg:mt-0 lg:pl-10">
-                <p className="pretty text-base leading-7 text-[color:var(--color-muted)]">
-                  Discover the philosophy, people, products, and vision behind Fluxtent across
-                  dedicated pages designed for clarity.
-                </p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <Button href="/foundation">Open Foundation</Button>
-                  <Button href="/contact" variant="secondary">
-                    Get in Touch
-                  </Button>
-                </div>
-              </div>
+      <section className="section-spacing">
+        <div className="section-shell">
+          <div className="professional-card relative overflow-hidden grid gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            {/* Subtle gradient accent */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-0 right-0 h-[2px]"
+              style={{ background: "linear-gradient(90deg, #CEC9FF, #A4C3FF, #7D88F2)" }}
+            />
+            <div>
+              <p className="eyebrow">Next step</p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-[var(--color-foreground)]">
+                See the complete product breakdown.
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-muted)]">
+                The ecosystem page goes deeper into the problem, audience, and core capability
+                behind each Fluxtent product.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button href="/ecosystem">Open products</Button>
+              <Button href="/contact" variant="secondary">
+                Contact Fluxtent
+              </Button>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </PageFrame>
   );
 }

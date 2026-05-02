@@ -14,15 +14,17 @@ export interface Founder {
 export interface AppProject {
   slug: string;
   name: string;
-  description: string;
-  longDescription: string;
-  motif: string;
-  accentClass: string;
   status: string;
+  format: string;
+  audience: string;
+  description: string;
+  problem: string;
+  solution: string;
   href: string;
   linkLabel: string;
   external?: boolean;
   focusAreas: string[];
+  features: string[];
 }
 
 export interface HeroHighlight {

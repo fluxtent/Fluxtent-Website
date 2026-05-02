@@ -14,24 +14,24 @@ export default function ContactPage() {
   return (
     <PageFrame>
       <PageHero
-        description="Fluxtent is still growing deliberately, but the line of contact is already open. Reach out about the foundation, the portfolio, or future opportunities to build and collaborate."
+        description="The contact surface stays simple: direct email for portfolio conversations, product questions, collaboration, and future opportunities."
         eyebrow="Contact"
         panelItems={[
           {
             title: "Primary channel",
-            description: "Email remains the cleanest way to start a conversation with the Fluxtent foundation.",
+            description: "Email is the current source of truth for reaching Fluxtent.",
           },
           {
-            title: "Current scope",
-            description: "Portfolio conversations, product discussions, collaboration, and future ecosystem ideas.",
+            title: "Best fit",
+            description: "Product questions, collaboration, portfolio review, and future ecosystem ideas.",
           },
           {
-            title: "What comes next",
-            description: "Additional socials and contact surfaces can be layered in later without changing the site structure.",
+            title: "Current address",
+            description: contactLinks[0].helper,
           },
         ]}
         panelTitle="Reach out"
-        title="A minimal contact surface, designed to stay elegant."
+        title="A direct contact path for Fluxtent."
       />
       <Contact contactLinks={contactLinks} />
     </PageFrame>

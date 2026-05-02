@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import type { HeroHighlight } from "@/lib/types";
 
@@ -18,6 +18,15 @@ interface PageHeroProps {
   panelItems: PageHeroPanelItem[];
 }
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.55, ease: [0.4, 0, 0.2, 1] as const },
+  }),
+};
+
 export function PageHero({
   description,
   eyebrow,
@@ -26,94 +35,94 @@ export function PageHero({
   panelTitle,
   title,
 }: PageHeroProps) {
-  const reduceMotion = useReducedMotion();
-
   return (
-    <section className="relative overflow-hidden pb-12 pt-32 sm:pt-36">
-      <div className="section-shell grid items-start gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, amount: 0.25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.68)]">
+    <section className="relative overflow-hidden">
+      {/* Gradient mesh background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 20% 40%, rgba(206,201,255,0.18) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 80% 30%, rgba(164,195,255,0.14) 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="section-shell relative grid gap-10 py-14 sm:py-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-start">
+        <div>
+          <motion.p
+            className="eyebrow"
+            initial="hidden"
+            animate="visible"
+            custom={0}
+            variants={fadeUp}
+          >
             {eyebrow}
-          </p>
-          <h1 className="font-display balance mt-6 max-w-4xl text-[clamp(3rem,6vw,5.4rem)] leading-[0.9] font-semibold tracking-[-0.05em] text-[color:var(--color-foreground)]">
+          </motion.p>
+          <motion.h1
+            className="balance mt-4 max-w-4xl text-4xl font-semibold leading-tight text-[var(--color-foreground)] sm:text-5xl"
+            initial="hidden"
+            animate="visible"
+            custom={1}
+            variants={fadeUp}
+          >
             {title}
-          </h1>
-          <p className="pretty mt-6 max-w-2xl text-lg leading-8 text-[color:var(--color-muted)]">
+          </motion.h1>
+          <motion.p
+            className="pretty mt-5 max-w-2xl text-lg leading-8 text-[var(--color-muted)]"
+            initial="hidden"
+            animate="visible"
+            custom={2}
+            variants={fadeUp}
+          >
             {description}
-          </p>
+          </motion.p>
 
           {highlights?.length ? (
-            <div className="mt-10 grid gap-3 sm:grid-cols-3">
-              {highlights.map((highlight, index) => (
-                <motion.div
+            <motion.dl
+              className="mt-8 grid max-w-2xl sm:grid-cols-3"
+              initial="hidden"
+              animate="visible"
+              custom={3}
+              variants={fadeUp}
+            >
+              {highlights.map((highlight) => (
+                <div
+                  className="border-b border-[var(--color-border)] py-5 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:pr-6"
                   key={highlight.label}
-                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                  transition={{
-                    duration: 0.72,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: reduceMotion ? 0 : 0.08 + index * 0.08,
-                  }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  whileInView={{ opacity: 1, y: 0 }}
                 >
-                  <div className="rounded-2xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-4 backdrop-blur-sm">
-                    <p className="text-2xl font-semibold tracking-[-0.04em] text-[color:var(--color-foreground)]">
-                      {highlight.value}
-                    </p>
-                    <p className="mt-2 text-[13px] leading-5 text-[color:var(--color-muted)]">
-                      {highlight.label}
-                    </p>
-                  </div>
-                </motion.div>
+                  <dt className="text-3xl font-semibold gradient-text">
+                    {highlight.value}
+                  </dt>
+                  <dd className="mt-1.5 text-sm leading-5 text-[var(--color-muted)]">
+                    {highlight.label}
+                  </dd>
+                </div>
               ))}
-            </div>
+            </motion.dl>
           ) : null}
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, x: 24 }}
-          transition={{ duration: 0.84, ease: [0.22, 1, 0.36, 1], delay: reduceMotion ? 0 : 0.1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.aside
+          className="professional-card p-5 sm:p-6"
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: [0.4, 0, 0.2, 1] as const }}
         >
-          <div className="rounded-[2rem] border border-[rgba(142,157,211,0.12)] bg-white/58 p-6 backdrop-blur-sm sm:p-7">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-[rgba(72,88,152,0.6)]">
-              <div className="h-1.5 w-1.5 rounded-full bg-[#7D88F2]" />
-              {panelTitle}
-            </div>
-
-            <div className="mt-6 space-y-4">
-              {panelItems.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  className="rounded-2xl border border-[rgba(142,157,211,0.1)] bg-white/72 p-5"
-                  initial={reduceMotion ? false : { opacity: 0, x: 16 }}
-                  transition={{
-                    duration: 0.68,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: reduceMotion ? 0 : 0.14 + index * 0.08,
-                  }}
-                  viewport={{ once: true, amount: 0.4 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgba(78,94,150,0.58)]">
-                    {item.title}
-                  </p>
-                  <p className="mt-2 text-[15px] leading-6 text-[color:var(--color-foreground)]">
-                    {item.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+          <p className="eyebrow">{panelTitle}</p>
+          <div className="mt-4 divide-y divide-[var(--color-border)]">
+            {panelItems.map((item) => (
+              <div className="py-4" key={item.title}>
+                <h2 className="text-base font-semibold text-[var(--color-foreground)]">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
-        </motion.div>
+        </motion.aside>
       </div>
     </section>
   );
 }
-

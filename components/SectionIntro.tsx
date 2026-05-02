@@ -23,13 +23,17 @@ export function SectionIntro({
         className,
       )}
     >
-      <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.7)]">
-        {eyebrow}
-      </p>
-      <h2 className="font-display balance mt-4 text-4xl leading-none font-semibold tracking-[-0.03em] text-[color:var(--color-foreground)] sm:text-5xl lg:text-[3.7rem]">
+      <div className="flex items-center gap-3">
+        <div
+          className="h-[2px] w-6 rounded-full"
+          style={{ background: "linear-gradient(90deg, #7D88F2, #A4C3FF)" }}
+        />
+        <p className="eyebrow">{eyebrow}</p>
+      </div>
+      <h2 className="balance mt-3 text-3xl font-semibold leading-tight text-[var(--color-foreground)] sm:text-4xl">
         {title}
       </h2>
-      <p className="pretty mt-5 max-w-2xl text-base leading-7 text-[color:var(--color-muted)] sm:text-lg">
+      <p className="pretty mt-4 max-w-2xl text-base leading-7 text-[var(--color-muted)]">
         {description}
       </p>
     </header>

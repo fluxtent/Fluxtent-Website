@@ -7,69 +7,67 @@ import { foundationPillars, heroHighlights } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Foundation",
-  description: "Explore the Fluxtent foundation, its purpose, and the structure beneath the portfolio.",
+  description: "How Fluxtent organizes a growing portfolio of health-focused digital products.",
 };
 
 export default function FoundationPage() {
   return (
     <PageFrame>
       <PageHero
-        description="Fluxtent is more than a landing page or product list. It is the structure that gives a growing portfolio of health-focused tools shared language, shared standards, and a more coherent public identity."
+        description="Fluxtent gives a growing set of health-focused tools one public identity, one product standard, and one place to explain why the work belongs together."
         eyebrow="Foundation"
         highlights={heroHighlights}
         panelItems={[
           {
             title: "Role",
-            description: "A portfolio foundation beneath a family of health-related digital products.",
+            description: "A portfolio foundation for browser and web products in health-adjacent categories.",
           },
           {
             title: "Method",
-            description: "Design-first framing with an emphasis on clarity, accessibility, and product maturity.",
+            description: "Concrete product positioning, straightforward copy, and a restrained design system.",
           },
           {
             title: "Outcome",
-            description: "A more credible and unified way to present ideas, apps, and future health-tech work.",
+            description: "A site that makes the work easier to understand, evaluate, and expand.",
           },
         ]}
-        panelTitle="What Fluxtent does"
-        title="The structure beneath the portfolio."
+        panelTitle="Operating model"
+        title="The structure behind the Fluxtent portfolio."
       />
       <About pillars={foundationPillars} />
 
-      <section className="section-spacing relative z-10 pt-2">
-        <div className="section-shell grid gap-5 lg:grid-cols-3">
-          {[
-            {
-              title: "Intentional framing",
-              description:
-                "Products are introduced as part of a wider system of thought rather than isolated concept pages.",
-            },
-            {
-              title: "Editorial restraint",
-              description:
-                "The visual language stays light, spacious, and mature so the work feels credible instead of over-explained.",
-            },
-            {
-              title: "Future-ready expansion",
-              description:
-                "The foundation is designed to absorb new projects, narratives, and collaborators without losing cohesion.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-3xl border border-[rgba(142,157,211,0.12)] bg-white/55 p-6 backdrop-blur-sm"
-            >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[rgba(82,96,154,0.56)]">
-                {item.title}
-              </p>
-              <p className="mt-4 text-sm leading-7 text-[color:var(--color-foreground)]">
-                {item.description}
-              </p>
-            </div>
-          ))}
+      <section className="section-spacing bg-white">
+        <div className="section-shell">
+          <div className="grid gap-4 lg:grid-cols-3">
+            {[
+              {
+                title: "Product context",
+                description:
+                  "Every product page and card should answer what it is, who it helps, where it is available, and why it matters.",
+              },
+              {
+                title: "Portfolio credibility",
+                description:
+                  "The site should make live products feel trustworthy without pretending the foundation is larger than it is.",
+              },
+              {
+                title: "Expansion path",
+                description:
+                  "The architecture leaves room for product pages, screenshots, reviews, updates, and a Recall waitlist later.",
+              },
+            ].map((item) => (
+              <article className="professional-card p-5 sm:p-6" key={item.title}>
+                <h2 className="text-lg font-semibold text-[var(--color-foreground)]">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[var(--color-muted)]">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </PageFrame>
   );
 }
-

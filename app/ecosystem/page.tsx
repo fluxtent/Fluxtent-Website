@@ -7,38 +7,39 @@ import { PageHero } from "@/components/PageHero";
 import { projects } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Ecosystem",
-  description: "Explore the Fluxtent ecosystem — four live Chrome extensions, one web application, and a unified vision for thoughtful health technology.",
+  title: "Products",
+  description:
+    "Explore Fluxtent products across allergen safety, digital wellness, medication adherence, AI health guidance, and cognitive wellness.",
 };
 
 export default function EcosystemPage() {
   return (
     <PageFrame>
       <PageHero
-        description="From AI-powered allergen detection to medication adherence and digital wellness, each Fluxtent product addresses a specific gap in everyday health management. Most are already live and available for installation."
-        eyebrow="Ecosystem"
+        description="The Fluxtent portfolio includes three live Chrome extensions, one live web application, and one cognitive wellness product in development."
+        eyebrow="Products"
         panelItems={[
           {
             title: "Chrome extensions",
-            description: "AllerGuard, TabGuard, and MedRemind are live on the Chrome Web Store, ready for immediate use.",
+            description: "AllerGuard, TabGuard, and MedRemind are live on the Chrome Web Store.",
           },
           {
             title: "Web application",
-            description: "MedBrief AI runs as a full-stack conversational health companion at medbriefai.vercel.app.",
+            description: "MedBrief AI is available as a live conversational health guidance app.",
           },
           {
-            title: "In progress",
-            description: "Recall is actively under development as a cognitive wellness toolkit with spaced repetition.",
+            title: "In development",
+            description: "Recall is being built as a cognitive wellness and memory reinforcement product.",
           },
         ]}
         panelTitle="Portfolio composition"
-        title="Five products addressing five distinct health challenges."
+        title="Five products, five distinct user problems."
       />
       <AppsShowcase
-        description="Each product operates independently while sharing Fluxtent's core commitment to calm interfaces, meaningful utility, and thoughtful design. Click through to install or explore."
-        eyebrow="Product catalog"
+        description="Browse the current product family by status, format, and focus area. Live products link directly to their public surfaces."
+        eyebrow="Catalog"
         projects={projects}
-        title="Browse the full Fluxtent product family."
+        title="The full Fluxtent product portfolio."
       />
       <EcosystemAtlas projects={projects} />
     </PageFrame>

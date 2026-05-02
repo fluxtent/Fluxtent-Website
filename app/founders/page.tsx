@@ -7,34 +7,33 @@ import { founders } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Founders",
-  description: "Meet the founders behind Fluxtent: Arnav Singh and Varun Puttagunta.",
+  description: "Meet Arnav Singh and Varun Puttagunta, the founders behind Fluxtent.",
 };
 
 export default function FoundersPage() {
   return (
     <PageFrame>
       <PageHero
-        description="Fluxtent is led by two builders with a shared interest in careful interfaces, credible product storytelling, and digital tools that feel genuinely useful in health-related contexts."
+        description="Fluxtent is founder-led, so the site needs to communicate who is responsible for the product judgment behind the portfolio without slipping into overproduced biography copy."
         eyebrow="Founders"
         panelItems={[
           {
             title: "Arnav Singh",
-            description: "Brings a design-forward product instinct centered on clarity, tone, and interface quality.",
+            description: "Product and interface focus across the Fluxtent website and product surfaces.",
           },
           {
             title: "Varun Puttagunta",
-            description: "Shapes the foundation with a systems-minded eye for cohesion, relevance, and product rigor.",
+            description: "Systems and portfolio focus across product positioning, coherence, and roadmap thinking.",
           },
           {
-            title: "Shared direction",
-            description: "Founder-led craftsmanship with a clear commitment to thoughtful, accessible health technology.",
+            title: "Shared responsibility",
+            description: "Keep the work concrete, useful, and presented with professional discipline.",
           },
         ]}
-        panelTitle="Builder profiles"
-        title="The people shaping the Fluxtent foundation."
+        panelTitle="Team profile"
+        title="The people accountable for the work."
       />
       <Founders founders={founders} />
     </PageFrame>
   );
 }
-

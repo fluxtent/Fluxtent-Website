@@ -1,36 +1,21 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 
 import "./globals.css";
 
-const sans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
   title: {
-    default: "Fluxtent — Thoughtful Health Technology",
-    template: "%s — Fluxtent",
+    default: "Fluxtent | Health Product Portfolio",
+    template: "%s | Fluxtent",
   },
   description:
-    "Fluxtent is a portfolio foundation by Arnav Singh and Varun Puttagunta, focused on building thoughtful, accessible, health-related digital products.",
+    "Fluxtent is a founder-led portfolio of health-focused Chrome extensions and web products built by Arnav Singh and Varun Puttagunta.",
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Fluxtent — Thoughtful Health Technology",
+    title: "Fluxtent | Health Product Portfolio",
     description:
-      "A portfolio foundation for thoughtfully designed digital tools that support healthier, more intentional everyday living.",
+      "A focused portfolio of browser and web products for allergen safety, digital wellness, medication adherence, health guidance, and cognitive fitness.",
     type: "website",
     locale: "en_US",
   },
@@ -43,7 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${sans.variable} ${cormorant.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

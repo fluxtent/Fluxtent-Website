@@ -1,171 +1,183 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/Button";
-import { SplineScene } from "@/components/ui/splite";
-import { Spotlight } from "@/components/ui/spotlight";
+import { heroHighlights, projects } from "@/lib/data";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.12, duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
+  }),
+};
 
 export function Hero() {
-  const heroLogoImageWidth = 166;
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const ambientY = useTransform(scrollYProgress, [0, 0.3], [0, reduceMotion ? 0 : 120]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, reduceMotion ? 1 : 0.98]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.25], [1, reduceMotion ? 1 : 0.7]);
-
-  const stagger: import("framer-motion").Variants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: reduceMotion ? 0 : 0.08,
-        delayChildren: reduceMotion ? 0 : 0.1,
-      },
-    },
-  };
-
-  const fadeUp: import("framer-motion").Variants = {
-    hidden: reduceMotion ? {} : { opacity: 0, y: 28 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
-  };
-
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pt-24 pb-20 sm:pt-32" id="top">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <motion.div
-          className="absolute -left-32 top-[5%] h-[32rem] w-[32rem] rounded-full opacity-70 blur-[100px]"
-          style={{
-            y: ambientY,
-            background: "radial-gradient(circle, rgba(201,191,255,0.5) 0%, transparent 70%)",
-          }}
-        />
-        <motion.div
-          className="absolute -right-24 top-[12%] h-[28rem] w-[28rem] rounded-full opacity-60 blur-[90px]"
-          style={{
-            y: useTransform(scrollYProgress, [0, 0.25], [0, reduceMotion ? 0 : 80]),
-            background: "radial-gradient(circle, rgba(157,189,255,0.45) 0%, transparent 70%)",
-          }}
-        />
-        <motion.div
-          className="absolute right-[10%] top-[30%] h-[24rem] w-[24rem] rounded-full opacity-40 blur-[90px]"
-          style={{
-            y: useTransform(scrollYProgress, [0, 0.3], [0, reduceMotion ? 0 : -60]),
-            background: "radial-gradient(circle, rgba(125,136,242,0.3) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(125,136,242,0.08)" />
-
+    <section className="relative overflow-hidden">
+      {/* Gradient mesh background */}
       <div
-        className="absolute inset-y-0 -right-[5%] hidden w-[58%] md:block"
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
         style={{
-          zIndex: 2,
-          maskImage:
-            "radial-gradient(ellipse 80% 80% at 55% 50%, rgba(0,0,0,0.75) 10%, transparent 65%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 80% at 55% 50%, rgba(0,0,0,0.75) 10%, transparent 65%)",
+          background:
+            "radial-gradient(ellipse 80% 50% at 15% 40%, rgba(206,201,255,0.22) 0%, transparent 70%), radial-gradient(ellipse 60% 40% at 85% 25%, rgba(164,195,255,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 50% 90%, rgba(125,136,242,0.10) 0%, transparent 70%)",
         }}
-      >
-        <div
-          className="h-full w-full"
-          style={{
-            filter:
-              "sepia(1) hue-rotate(220deg) saturate(1.8) brightness(1.1) contrast(0.85)",
-            opacity: 0.7,
-          }}
-        >
-          <SplineScene
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="h-full w-full"
-          />
-        </div>
-      </div>
+      />
 
-      <motion.div
-        className="section-shell relative z-10"
-        style={{ scale: heroScale, opacity: heroOpacity }}
-      >
-        <motion.div
-          className="max-w-[42rem]"
-          variants={stagger}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-          whileInView="show"
-        >
-          <motion.div className="flex items-center gap-3" variants={fadeUp}>
-            <div className="h-px w-8 bg-gradient-to-r from-[#7D88F2] to-transparent" />
-            <p className="eyebrow text-xs font-semibold text-[rgba(72,88,152,0.65)]">
-              Founder-led health-tech foundation
-            </p>
-          </motion.div>
-
+      <div className="section-shell relative grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
           <motion.div
-            className="mt-6 inline-flex items-center rounded-[1.85rem] border border-[rgba(255,255,255,0.84)] bg-white/76 px-[0.94rem] py-[0.58rem] shadow-[0_14px_36px_rgba(111,124,175,0.1)] backdrop-blur-xl"
+            initial="hidden"
+            animate="visible"
+            custom={0}
             variants={fadeUp}
           >
-            <div className="relative flex h-[2.22rem] w-[8.45rem] items-center justify-center overflow-hidden sm:h-[2.24rem] sm:w-[8.58rem]">
-              <Image
-                alt="Fluxtent"
-                className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-                height={506}
-                priority
-                src="/fluxtent-logo.png"
-                sizes={`${heroLogoImageWidth}px`}
-                width={494}
-                style={{ width: heroLogoImageWidth, height: "auto" }}
-              />
-            </div>
+            <Image
+              alt="Fluxtent"
+              height={506}
+              priority
+              src="/fluxtent-logo.png"
+              width={494}
+              className="h-auto w-44"
+            />
           </motion.div>
+
+          <motion.p
+            className="eyebrow mt-10"
+            initial="hidden"
+            animate="visible"
+            custom={1}
+            variants={fadeUp}
+          >
+            Founder-led health product portfolio
+          </motion.p>
 
           <motion.h1
-            className="font-display balance mt-7 max-w-[38rem] text-[clamp(2.6rem,5.5vw,5.2rem)] leading-[0.92] font-semibold tracking-[-0.045em] text-[color:var(--color-foreground)]"
+            className="balance mt-4 max-w-4xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
+            initial="hidden"
+            animate="visible"
+            custom={2}
             variants={fadeUp}
           >
-            A portfolio foundation for <span className="gradient-text">thoughtful</span> health
-            technology.
+            <span className="gradient-text">Health tools</span>{" "}
+            <span className="text-[var(--color-foreground)]">for concrete everyday decisions.</span>
           </motion.h1>
 
           <motion.p
-            className="pretty mt-6 max-w-xl text-[1.05rem] leading-7 text-[color:var(--color-muted)]"
+            className="pretty mt-5 max-w-2xl text-lg leading-8 text-[var(--color-muted)]"
+            initial="hidden"
+            animate="visible"
+            custom={3}
             variants={fadeUp}
           >
-            Fluxtent is a portfolio foundation by{" "}
-            <strong className="font-semibold text-[color:var(--color-foreground)]">Arnav Singh</strong>{" "}
-            and{" "}
-            <strong className="font-semibold text-[color:var(--color-foreground)]">
-              Varun Puttagunta
-            </strong>
-            , built to showcase clear, accessible digital tools that support healthier and more
-            intentional everyday living.
+            Fluxtent is a portfolio built by Arnav Singh and Varun Puttagunta. It
+            brings together browser extensions and web products for allergen safety,
+            digital wellness, medication adherence, AI health guidance, and cognitive fitness.
           </motion.p>
 
-          <motion.div className="mt-8 flex flex-wrap gap-3" variants={fadeUp}>
-            <Button
-              href="/ecosystem"
-              icon={
-                <svg className="size-4" fill="none" viewBox="0 0 16 16">
-                  <path
-                    d="M3.75 8H12.25M12.25 8L8.75 4.5M12.25 8L8.75 11.5"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.5"
-                  />
-                </svg>
-              }
-            >
-              Explore Projects
-            </Button>
+          <motion.div
+            className="mt-8 flex flex-wrap gap-3"
+            initial="hidden"
+            animate="visible"
+            custom={4}
+            variants={fadeUp}
+          >
+            <Button href="/ecosystem">View products</Button>
             <Button href="/foundation" variant="secondary">
-              View Foundation
+              How Fluxtent works
             </Button>
           </motion.div>
-        </motion.div>
-      </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#f6f7ff] to-transparent" />
+          <motion.dl
+            className="mt-10 grid max-w-2xl gap-0 sm:grid-cols-3"
+            initial="hidden"
+            animate="visible"
+            custom={5}
+            variants={fadeUp}
+          >
+            {heroHighlights.map((highlight, i) => (
+              <div
+                key={highlight.label}
+                className="border-b border-[var(--color-border)] py-5 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:pr-6"
+              >
+                <dt className="text-3xl font-semibold gradient-text">
+                  {highlight.value}
+                </dt>
+                <dd className="mt-1.5 text-sm leading-5 text-[var(--color-muted)]">
+                  {highlight.label}
+                </dd>
+              </div>
+            ))}
+          </motion.dl>
+        </div>
+
+        <motion.aside
+          className="professional-card p-6 sm:p-7"
+          aria-label="Fluxtent portfolio snapshot"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.35, duration: 0.7, ease: [0.4, 0, 0.2, 1] as const }}
+        >
+          <div className="flex items-center justify-between gap-4 border-b border-[var(--color-border)] pb-4">
+            <div>
+              <p className="eyebrow">Portfolio snapshot</p>
+              <h2 className="mt-2 text-2xl font-semibold text-[var(--color-foreground)]">
+                Products with real surfaces
+              </h2>
+            </div>
+            <span
+              className="rounded-xl px-3 py-1.5 text-sm font-semibold text-[var(--color-accent-dark)]"
+              style={{ background: "rgba(125,136,242,0.08)" }}
+            >
+              2026
+            </span>
+          </div>
+
+          <div className="divide-y divide-[var(--color-border)]">
+            {projects.map((project) => (
+              <Link
+                key={project.slug}
+                className="group grid gap-2 py-4 transition-all duration-200 sm:grid-cols-[1fr_auto]"
+                href={`/ecosystem#${project.slug}`}
+              >
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="status-dot" />
+                    <h3 className="font-semibold text-[var(--color-foreground)] group-hover:text-[var(--color-accent-dark)] transition-colors duration-200">
+                      {project.name}
+                    </h3>
+                  </div>
+                  <p className="mt-1.5 text-sm leading-6 text-[var(--color-muted)]">
+                    {project.description}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 text-left sm:text-right">
+                  <div>
+                    <p className="text-sm font-semibold text-[var(--color-foreground)]">
+                      {project.status}
+                    </p>
+                    <p className="mt-1 text-xs text-[var(--color-muted)]">{project.format}</p>
+                  </div>
+                  <svg
+                    className="size-4 text-[var(--color-muted)] opacity-0 -translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.aside>
+      </div>
     </section>
   );
 }

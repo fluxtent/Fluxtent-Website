@@ -6,35 +6,34 @@ import { Vision } from "@/components/Vision";
 import { principles } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "Vision",
-  description: "Read the design philosophy and product vision guiding the Fluxtent foundation.",
+  title: "Standards",
+  description: "The product and design standards guiding the Fluxtent portfolio.",
 };
 
 export default function VisionPage() {
   return (
     <PageFrame>
       <PageHero
-        description="Fluxtent is guided by a simple belief: health technology should not feel cluttered, performative, or emotionally tone-deaf. It should feel composed, clear, and genuinely helpful."
-        eyebrow="Vision"
+        description="The standards page replaces vague brand philosophy with practical expectations for product clarity, user value, and trust."
+        eyebrow="Standards"
         panelItems={[
           {
-            title: "Calm over noise",
-            description: "Interfaces should reduce friction and support decision-making rather than compete for attention.",
+            title: "Specificity",
+            description: "Each product must state the user burden it addresses and the surface where it is available.",
           },
           {
-            title: "Utility over novelty",
-            description: "The goal is meaningful usefulness, not decorative cleverness or generic startup language.",
+            title: "Readability",
+            description: "Typography, spacing, and hierarchy should make product information easy to scan.",
           },
           {
-            title: "Craft over volume",
-            description: "Every spacing choice, motion choice, and sentence should reinforce trust and care.",
+            title: "Restraint",
+            description: "The site should avoid decorative complexity that distracts from the work.",
           },
         ]}
-        panelTitle="Philosophy"
-        title="A design philosophy grounded in meaningful utility."
+        panelTitle="Design standard"
+        title="Professional presentation without inflated language."
       />
       <Vision principles={principles} />
     </PageFrame>
   );
 }
-

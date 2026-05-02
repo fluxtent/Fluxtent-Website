@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { Button } from "@/components/ui/Button";
 import type { NavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -13,17 +14,9 @@ interface SiteHeaderProps {
 }
 
 export function SiteHeader({ navItems }: SiteHeaderProps) {
-  const headerLogoImageWidth = 164;
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 24);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -32,109 +25,120 @@ export function SiteHeader({ navItems }: SiteHeaderProps) {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const isActiveLink = (href: string) =>
     pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div className="section-shell pt-3">
-        <div
-          className={cn(
-            "flex items-center justify-between rounded-[2.2rem] border px-6 py-[0.75rem] transition-all duration-500 sm:px-7",
-            isScrolled
-              ? "border-[rgba(142,157,211,0.18)] bg-white/92 shadow-[0_12px_36px_rgba(116,130,185,0.1)] backdrop-blur-2xl"
-              : "border-[rgba(142,157,211,0.14)] bg-white/84 shadow-[0_10px_30px_rgba(116,130,185,0.08)] backdrop-blur-xl"
-          )}
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-all duration-300",
+        scrolled
+          ? "border-b border-[var(--color-border)] bg-white/70 backdrop-blur-2xl shadow-[var(--shadow-header)]"
+          : "border-b border-transparent bg-white/50 backdrop-blur-xl",
+      )}
+    >
+      <div className="section-shell flex h-16 items-center justify-between gap-6">
+        <Link
+          aria-label="Go to Fluxtent homepage"
+          className="flex items-center transition-opacity hover:opacity-80"
+          href="/"
+          onClick={() => setIsOpen(false)}
         >
-          <Link
-            aria-label="Go to Fluxtent homepage"
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
-            href="/"
-          >
-            <div className="relative flex h-[2.08rem] w-[8.35rem] items-center justify-center overflow-hidden sm:w-[8.45rem]">
-              <Image
-                alt="Fluxtent"
-                className="absolute left-1/2 top-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-                height={506}
-                priority
-                src="/fluxtent-logo.png"
-                sizes={`${headerLogoImageWidth}px`}
-                width={494}
-                style={{ width: headerLogoImageWidth, height: "auto" }}
-              />
-            </div>
-          </Link>
+          <Image
+            alt="Fluxtent"
+            height={506}
+            priority
+            src="/fluxtent-logo.png"
+            width={494}
+            className="h-auto w-36"
+          />
+        </Link>
 
-          <nav aria-label="Primary" className="hidden items-center md:flex">
-            <div className="flex items-center gap-1.5">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  className={cn(
-                    "relative inline-flex items-center rounded-full px-3.75 py-2.5 text-[13.5px] font-semibold transition-all duration-300",
-                    isActiveLink(item.href)
-                      ? "bg-[rgba(244,246,255,0.98)] text-[#44507c] shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] after:absolute after:bottom-[0.45rem] after:left-1/2 after:h-[2px] after:w-[66%] after:-translate-x-1/2 after:rounded-full after:bg-[#a8b6ff]"
-                      : "text-[rgba(42,49,84,0.72)] hover:bg-white/62 hover:text-[rgba(42,49,84,0.92)]"
-                  )}
-                  href={item.href}
-                  title={item.description}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </nav>
+        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              className={cn(
+                "relative text-sm font-medium transition-colors duration-200",
+                isActiveLink(item.href)
+                  ? "text-[var(--color-accent-dark)]"
+                  : "text-[var(--color-muted)] hover:text-[var(--color-foreground)]",
+              )}
+              href={item.href}
+              title={item.description}
+            >
+              {item.label}
+              {isActiveLink(item.href) && (
+                <span className="absolute -bottom-1 left-0 right-0 h-0.5 rounded-full bg-[var(--color-accent)]" />
+              )}
+            </Link>
+          ))}
+        </nav>
 
-          <button
-            aria-controls="mobile-navigation"
-            aria-expanded={isOpen}
-            aria-label="Toggle navigation"
-            className="flex size-10 items-center justify-center rounded-xl border border-[rgba(142,157,211,0.2)] bg-white/70 text-[color:var(--color-foreground)] transition hover:bg-white md:hidden"
-            onClick={() => setIsOpen((open) => !open)}
-            type="button"
-          >
-            <span className="relative h-3.5 w-5">
-              <span
-                className={cn(
-                  "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300",
-                  isOpen ? "translate-y-1.5 rotate-45" : ""
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute left-0 top-[0.42rem] h-0.5 w-5 rounded-full bg-current transition-all duration-300",
-                  isOpen ? "scale-x-0 opacity-0" : ""
-                )}
-              />
-              <span
-                className={cn(
-                  "absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300",
-                  isOpen ? "-translate-y-1.5 -rotate-45" : ""
-                )}
-              />
-            </span>
-          </button>
+        <div className="hidden items-center gap-3 md:flex">
+          <Button className="min-h-10 px-4 py-2" href="/ecosystem" variant="secondary">
+            Products
+          </Button>
+          <Button className="min-h-10 px-4 py-2" href="/contact">
+            Contact
+          </Button>
         </div>
 
-        <div
-          className={cn(
-            "overflow-hidden transition-all duration-400 md:hidden",
-            isOpen ? "mt-2 max-h-96 opacity-100" : "mt-0 max-h-0 opacity-0"
-          )}
-          id="mobile-navigation"
+        <button
+          aria-controls="mobile-navigation"
+          aria-expanded={isOpen}
+          aria-label="Toggle navigation"
+          className="inline-flex size-10 items-center justify-center rounded-xl border border-[var(--color-border)] bg-white/60 backdrop-blur-sm text-[var(--color-foreground)] transition-colors hover:border-[var(--color-accent)] md:hidden"
+          onClick={() => setIsOpen((open) => !open)}
+          type="button"
         >
-          <nav
-            aria-label="Mobile"
-            className="rounded-2xl border border-[rgba(142,157,211,0.2)] bg-white/90 p-2 shadow-[0_12px_40px_rgba(116,130,185,0.12)] backdrop-blur-2xl"
-          >
+          <span className="relative h-3.5 w-5">
+            <span
+              className={cn(
+                "absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-300",
+                isOpen ? "translate-y-1.5 rotate-45" : "",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute left-0 top-1.5 h-0.5 w-5 rounded-full bg-current transition-opacity duration-300",
+                isOpen ? "opacity-0" : "",
+              )}
+            />
+            <span
+              className={cn(
+                "absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-transform duration-300",
+                isOpen ? "-translate-y-1.5 -rotate-45" : "",
+              )}
+            />
+          </span>
+        </button>
+      </div>
+
+      <div
+        className={cn(
+          "border-t border-[var(--color-border)] bg-white/80 backdrop-blur-2xl transition-[max-height,opacity] duration-300 md:hidden",
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 overflow-hidden opacity-0",
+        )}
+        id="mobile-navigation"
+      >
+        <nav aria-label="Mobile" className="section-shell py-3">
+          <div className="grid gap-1">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 className={cn(
-                  "block rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200",
+                  "rounded-xl px-3 py-3 text-sm font-semibold transition-colors duration-200",
                   isActiveLink(item.href)
-                    ? "bg-[rgba(125,136,242,0.06)] text-[color:var(--color-foreground)]"
-                    : "text-[rgba(42,49,84,0.7)] hover:bg-white"
+                    ? "bg-[rgba(125,136,242,0.08)] text-[var(--color-accent-dark)]"
+                    : "text-[var(--color-muted)] hover:bg-[rgba(125,136,242,0.05)] hover:text-[var(--color-foreground)]",
                 )}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
@@ -142,8 +146,8 @@ export function SiteHeader({ navItems }: SiteHeaderProps) {
                 {item.label}
               </Link>
             ))}
-          </nav>
-        </div>
+          </div>
+        </nav>
       </div>
     </header>
   );
